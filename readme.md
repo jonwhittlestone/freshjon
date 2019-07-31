@@ -1,55 +1,16 @@
-# Dotfiles
+# freshjon - Provisioning scripts for a new machine
 
+This repo contains a bash script for provisioning a new Linux machine. Tested on Ubuntu 18.04 [31/07/19]
 
----
-## Reinstall Ubuntu Log
+If you haven't already, get git and clone down this repo.
 
-### Pre-automated Script
+        sudo apt update         ;
+        sudo apt install git -y ;
+        mkdir ~/code/freshjon   ;
+        git clone https://github.com/jonwhittlestone/freshjon.git ~/code/freshjon;
+        cd ~/code/freshjon
+        #
 
-1. bitwarden
-    
-        sudo snap install bitwarden
+Then run:
 
- 2. Log in with Firefox Sync for bookmarks
- 
- 3. ssh server - https://t.ly/8Xgj
-        
-        sudo apt update
-        sudo apt install openssh-server -y
-
- 4. Generate new SSH key 
- 
-        ssh-keygen -t rsa -b 4096 -C "temp@howapped.com"
-        
-        
-  5. Install git
-  
-            sudo apt update
-            sudo apt install git -y
-
-   6. Make directory for ~/code
-   
-            mkdir ~/code
-            cd ~/code
-
-    7. Clone old_dotfiles into ~/code/dotfiles/salvaged
-    
-            git clone https://jonwhittlestone@bitbucket.org/jonwhittlestone/old_dotfiles.git ~/code/dotfiles/salvaged
-
-    8. Copy salvaged ssh keys etc
-
-    9. Install VSCode for Editing dotfiles
-
-            sudo snap install code --classic
-
-    10. Get settings sync extension for downloading
-    seeings from Gist
-
-
-### Run Script for dev deps
-
-11. `bash install.sh --zsh --install-devtools`
-
-### Linux Software
-
-12. `bash linux.sh`
+        bash run.sh
