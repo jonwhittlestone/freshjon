@@ -1,0 +1,13 @@
+[Unit]
+Description=Todo/Bookmarks/Notekeep
+After=network.target
+
+[Service]
+Type=simple
+User=jon
+WorkingDirectory=/home/jon/code/freshjon/browserstart
+ExecStart=/usr/bin/python -m SimpleHTTPServer 3000
+Restart=on-abort
+
+[Install]
+WantedBy=multi-user.target

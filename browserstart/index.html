@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+
+<script src="assets/node_modules/jquery/dist/jquery.min.js"></script>
+<script src="assets/node_modules/marked/marked.min.js"></script>
+<script type='text/javascript'>
+$( document ).ready(function() {
+    var endpoint = 'README.md';
+    endpoint = endpoint + "?cb=" + Math.random();
+    console.log(endpoint);
+    $.get( endpoint, function( data ) {
+        $( "#content" ).html( data );
+        $("#content").each(function(){
+            var content = $(this).text();  
+            var splitted = content.split("\n");  
+            var output = '';
+            
+            var todoCount = 0;
+            // get todoCount
+            for (var i in splitted) {
+
+                if (
+                    splitted[i] === '----' ||
+                    splitted[i] === '#### Code Ideas'
+                )
+                    break;
+
+                if (
+                    splitted[i].match('^-') && 
+                    !splitted[i].match('^- ~~') &&
+                    !splitted[i].match('----')
+                ) {
+
+                    console.log(splitted[i]);
+                    todoCount = todoCount + 1;
+                }
+
+            }
+            // get output
+            for (var i in splitted) {
+                if (splitted[i] === '----')
+                    break;
+
+                if (splitted[i] === '# Todo') {
+                    splitted[i] = '# Todo ('+ todoCount +')'
+                }
+                output += marked(splitted[i]);
+            }
+            output += "<textarea rows=20 cols=100>...Scratchpad\n\n</textarea>"
+            $(this).html(output);
+            $('textarea').select().focus();
+        });
+    });
+});
+</script>
+<link rel="stylesheet" href="assets/app.css">
+</head>
+<body class='bin'>
+    <header>
+        <ul>
+            <li>
+                <a href='https://calendar.google.com/calendar/r?pli=1'>date</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+                <a href="https://web.whatsapp.com/">WA</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<a href="https://outlook.live.com/mail/inbox">spam</a>&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;<a href='https://trello.com/jnw/boards'>trello</a>&nbsp;&nbsp;|&nbsp;
+                <a href='https://drive.google.com/drive/u/0/folders/1IMORzUt5EI_mIqi9sqrxlMCwJVi4vkCd?ths=true'>
+			drive
+                </a>&nbsp;|&nbsp;&nbsp;<a href='https://www.evernote.com/Home.action'>note</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<a href='https://send.firefox.com/'>send</a>
+            </li>
+
+            <li>
+                <a href='http://localhost:32400/web/index.html'>plex</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href='https://app.getpocket.com/'>read</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href='https://github.com/jonwhittlestone?tab=repositories'>github</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;<a href='https://bitbucket.org/dashboard/overview'>bb</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;<a href='assets/bite_size_command_line.pdf'>cmd</a>&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;<a href='https://docs.google.com/document/d/1psNJjvimTX1qPKJuVUbcBflcIc_DYWvXwvE0TJQPdgQ/edit#heading=h.ka9vjimxk9er'>theplan</a>&nbsp;|&nbsp;&nbsp;&nbsp;<a href='https://github.com/jonwhittlestone/cv'>CV</a>&nbsp;&nbsp;&nbsp;|&nbsp;<a href='https://docs.google.com/spreadsheets/d/1nEb1YsleOyeMHBzKhzYwu3IkvdMUhsCVNfDgdMUH85c/edit#gid=0'>leads</a>
+            </li>
+        </ul>
+    </header>
+    <div id="content" class='editor'>
+
+    </div>
+</body>
+
+
+</html>

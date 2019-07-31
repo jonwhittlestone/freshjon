@@ -1,0 +1,51 @@
+#!/bin/sh
+
+### enable aliases to be sudo’ed
+#
+#   http://askubuntu.com/questions/22037/aliases-not-available-when-using-sudo
+alias sudo="sudo "
+
+### ubuntu update & upgrade
+#
+alias uu="sudo apt-get update && sudo apt-get upgrade -y"
+alias uua="sudo apt-get update && sudo apt-get upgrade -y && sudo apt-get autoremove -y"
+
+### safety
+#
+# Avoid stupidity with trash-cli: using https://github.com/sindresorhus/trash-cli
+# or use default rm -i if trash is not installed
+if type trash &>/dev/null; then
+	alias rm="trash"
+else
+	alias rm="rm -i"
+fi
+
+### git
+#
+alias lg="git log --all --decorate --oneline --graph"
+
+### navigation
+#
+# go to the /home/$USER (~) directory and clears window of your terminal
+alias q="~ && clear"
+#
+[ -d ~/Pictures ] && alias pic="cd ~/Pictures"
+[ -d ~/projects ] && alias pj="cd ~/projects"
+
+### folders
+#
+alias ll="ls -alF"
+alias la="ls -A"
+alias l="ls -CF"
+
+### PATH
+#
+# pretty print $PATH
+alias path="print -l $path"
+
+### download
+#
+# web page with all assets
+alias getpage="wget --no-clobber --page-requisites --html-extension --convert-links --no-host-directories"
+# file with original filename
+alias get="curl -O -L"

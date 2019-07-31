@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Label</key>
+	<string>com.zerowidth.launched.autostart_python_server_for_knowledge_todos</string>
+	<key>LaunchOnlyOnce</key>
+	<true/>
+	<key>ProgramArguments</key>
+	<array>
+		<string>sh</string>
+		<string>-c</string>
+		<string>start-server.sh</string>
+	</array>
+	<key>UserName</key>
+	<string>jon</string>
+	<key>WorkingDirectory</key>
+	<string>/Users/jon/knowledge/browsertab-wiki/init</string>
+</dict>
+</plist>
