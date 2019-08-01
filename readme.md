@@ -14,3 +14,7 @@ If you haven't already, get git and clone down this repo.
 Then run:
 
         bash run.sh
+
+## Remember:
+
+* You can sync VSCode settings by downloading them from the [gist](https://gist.github.com/jonwhittlestone/adfb8954e5d2d1ee9ee98de095c75582)
