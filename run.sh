@@ -56,6 +56,16 @@ if [ "$1" = "--step2" ] || [ "$1" = "--all" ]; then
     cd ~ && git clone https://github.com/powerline/fonts.git --depth=1
     fonts/install.sh
     cd ~ && rm -rf fonts/
+
+    # tmux, theme, plugins
+    sudo apt install tmux -y
+    git clone https://github.com/jimeh/tmux-themepack.git ~/.tmux-themepack
+    git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+    git clone https://github.com/tmux-plugins/tmux-resurrect ~/.tmux/plugins/tmux-resurrect
+    # symlink to this repo's .tmux.conf
+    ln -sv ~/code/freshjon/.tmux.conf ~/.tmux.conf
+
+
 fi
 ###############################################
 # 3. Dev-specific Languages, Libraries, Apps  #
