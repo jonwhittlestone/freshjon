@@ -4,7 +4,12 @@ set -u
 #############################################
 # 1. Linux Quality of Life Apps & Packages  #
 #############################################
-if [ "$1" = "--step1" ]; then
+if [ "$1" = "--step1" ] || [ "$1" = "--all" ]; then
+
+    if [ "$1" = "--all" ]; then
+        echo "** Running freshjon provisioner, run.sh all steps **"
+        sleep 3
+    fi
     snaps=(
         bitwarden, chromium, plexmediaserver
         wavebox
@@ -16,12 +21,15 @@ if [ "$1" = "--step1" ]; then
     # And then vscode with the flag
     sudo snap install code --classic
 
+    # flameshot - screenshots
+    sudo apt install flameshot -y
+
     uua
 fi
 ###############################################
 # 2. Shell and Dotfiles                       #
 ###############################################
-if [ "$1" = "--step2" ]; then
+if [ "$1" = "--step2" ] || [ "$1" = "--all" ]; then
  echo "Setting up ZSH"
     # add zsh
     sudo apt install zsh -y
@@ -52,8 +60,8 @@ fi
 ###############################################
 # 3. Dev-specific Languages, Libraries, Apps  #
 ###############################################
-if [ "$1" = "--step3" ]; then
-    echo "Installing git, curl, z, fzf, shellcheck, neovim"
+if [ "$1" = "--step3" ] || [ "$1" = "--all" ]; then
+    echo "Installing git, curl, z, fzf, shellcheck, neovim, docker"
 
     ### prepare
     sudo apt install git curl -y
@@ -97,11 +105,31 @@ if [ "$1" = "--step3" ]; then
     fi
 
     uua
+
+    # docker, without sudo.
+    sudo apt install apt-transport-https ca-certificates curl software-properties-common
+    curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+    sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu bionic stable"
+    sudo apt update
+    sudo apt install docker-ce -y
+    sudo systemctl status docker
+    sudo usermod -aG docker ${USER}
+    su - ${USER}
+    id -nG
+
+    # gitkraken
+    wget https://release.gitkraken.com/linux/gitkraken-amd64.deb; sudo dpkg -i gitkraken-amd64.deb
+
+    # stracer monitoring
+    sudo add-apt-repository ppa:oguzhaninan/stacer -y
+    sudo apt-get update
+    sudo apt-get install stacer -y
+
 fi
 #################################################
 # 4. Simple 'browserstart' app for bookmarks   #
 #################################################
-if [ "$1" = "--step4" ]; then
+if [ "$1" = "--step4" ] || [ "$1" = "--all" ]; then
     # See:
     # https://gist.github.com/funzoneq/737cd5316e525c388d51877fb7f542de#gistcomment-2306584
 
