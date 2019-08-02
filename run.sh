@@ -130,7 +130,7 @@ if [ "$1" = "--step3" ] || [ "$1" = "--all" ]; then
     # gitkraken
     wget https://release.gitkraken.com/linux/gitkraken-amd64.deb; sudo dpkg -i gitkraken-amd64.deb
 
-    # stracer monitoring
+    # stacer monitoring
     sudo add-apt-repository ppa:oguzhaninan/stacer -y
     sudo apt-get update
     sudo apt-get install stacer -y
