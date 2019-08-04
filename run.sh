@@ -12,7 +12,7 @@ if [ "$1" = "--step1" ] || [ "$1" = "--all" ]; then
     fi
     snaps=(
         bitwarden, chromium, plexmediaserver
-        wavebox
+        wavebox, postman
     )
 
     for t in ${snaps[@]}; do
