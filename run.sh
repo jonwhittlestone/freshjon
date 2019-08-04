@@ -113,8 +113,40 @@ if [ "$1" = "--step3" ] || [ "$1" = "--all" ]; then
         echo "git clone https://github.com/asdf-vm/asdf.git ~/.asdf"
         exit
     fi
+    
 
-    uua
+    ### nodejs
+    asdf plugin-add nodejs
+    bash ~/.asdf/plugins/nodejs/bin/import-release-team-keyring
+    asdf install nodejs 8.16.0
+    asdf install nodejs 10.16.0
+    asdf global nodejs 10.16.0
+
+    ### yarn
+    curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
+    echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
+    sudo apt remove cmdtest -y
+    sudo apt-get update -y
+    sudo apt-get install --no-install-recommends yarn -y
+
+    ### python
+    sudo apt-get install -y make build-essential libssl-dev zlib1g-dev libbz2-dev \
+    libreadline-dev libsqlite3-dev wget curl llvm libncurses5-dev libncursesw5-dev \
+    xz-utils tk-dev python3-pip -y
+    pip install python3-venv
+
+    asdf plugin-add python
+    asdf install python 2.7.16
+    asdf install python 3.7.3
+    asdf global python 3.7.3
+
+
+    ### golang
+    asdf plugin-add golang
+    asdf install golang 1.11.3
+    asdf global golang 1.11.3
+
+    sudo apt-get update && sudo apt-get upgrade -y && sudo apt-get autoremove -y
 
     # docker, without sudo.
     sudo apt install apt-transport-https ca-certificates curl software-properties-common
@@ -139,6 +171,8 @@ if [ "$1" = "--step3" ] || [ "$1" = "--all" ]; then
     sudo add-apt-repository ppa:oguzhaninan/stacer -y
     sudo apt-get update
     sudo apt-get install stacer -y
+
+    sudo apt-get update && sudo apt-get upgrade -y && sudo apt-get autoremove -y
 
 fi
 #################################################
