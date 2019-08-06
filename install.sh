@@ -160,6 +160,10 @@ if [ "$2" = "--install-devtools" ]; then
     # asdf plugin-add rust
     # asdf install rust 1.31.0
     # asdf global rust 1.31.0
+
+    # global node package
+    # t-get for command line torrents
+    npm install -g t-get
     
 fi
 

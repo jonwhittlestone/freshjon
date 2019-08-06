@@ -107,6 +107,11 @@ if [ "$1" = "--step3" ] || [ "$1" = "--all" ]; then
     git clone https://github.com/asdf-vm/asdf.git ~/.asdf
     if cd ~/.asdf; then
         git checkout "$(git describe --abbrev=0 --tags)";
+
+        echo -e '\n. $HOME/.asdf/asdf.sh' >> ~/.zshrc
+        echo -e '\n. $HOME/.asdf/completions/asdf.bash' >> ~/.zshrc
+        source ~/.zshrc
+
     else
         echo "ERROR accessing ~/.asdf dir. Possible error while cloning."
         echo "Try the following command manually:"
