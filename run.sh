@@ -101,7 +101,13 @@ if [ "$1" = "--step3" ] || [ "$1" = "--all" ]; then
 
     ### development tools
     sudo apt install git curl automake autoconf libreadline-dev libncurses-dev \
-    libssl-dev libyaml-dev libxslt-dev libffi-dev libtool unixodbc-dev -y
+    libssl-dev libyaml-dev libxslt-dev libffi-dev libtool -y
+
+    ### dev tools - for python/mssql
+    sudo apt install unixodbc-dev freetds-dev freetds-bin tdsodbc -y
+
+    ### dev tools - for python/postgres
+    sudo apt install libpq-dev -y
 
     ### asdf - runtime versions
     git clone https://github.com/asdf-vm/asdf.git ~/.asdf
