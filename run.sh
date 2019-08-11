@@ -12,7 +12,7 @@ if [ "$1" = "--step1" ] || [ "$1" = "--all" ]; then
     fi
     snaps=(
         bitwarden, chromium, plexmediaserver
-        wavebox, postman
+        wavebox, postman, vlc
     )
 
     for t in ${snaps[@]}; do
@@ -24,7 +24,8 @@ if [ "$1" = "--step1" ] || [ "$1" = "--all" ]; then
     # flameshot - screenshots
     sudo apt install flameshot -y
 
-    uua
+    sudo apt-get update && sudo apt-get upgrade -y && sudo apt-get autoremove -y
+
 fi
 ###############################################
 # 2. Shell and Dotfiles                       #
