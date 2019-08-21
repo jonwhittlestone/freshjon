@@ -209,4 +209,10 @@ if [ "$1" = "--step4" ] || [ "$1" = "--all" ]; then
     git clone https://github.com/lambdalisue/jupyter-vim-binding vim_binding
     jupyter nbextension enable vim_binding/vim_binding
 
+    ### Virtualbox - see: https://tinyurl.com/y2bdqxhw
+    wget -q https://www.virtualbox.org/download/oracle_vbox_2016.asc -O- | sudo apt-key add -
+    echo "deb [arch=amd64] http://download.virtualbox.org/virtualbox/debian bionic contrib" | sudo tee /etc/apt/sources.list.d/virtualbox.list
+    sudo apt update
+    sudo apt-get -y install virtualbox-6.0
+
 fi
