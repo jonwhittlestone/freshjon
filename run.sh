@@ -160,7 +160,7 @@ if [ "$1" = "--step3" ] || [ "$1" = "--all" ]; then
 
     sudo apt-get update && sudo apt-get upgrade -y && sudo apt-get autoremove -y
 
-    # docker, without sudo.
+    ### docker, without sudo.
     sudo apt install apt-transport-https ca-certificates curl software-properties-common
     curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
     sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu bionic stable"
@@ -171,15 +171,15 @@ if [ "$1" = "--step3" ] || [ "$1" = "--all" ]; then
     su - ${USER}
     id -nG
 
-    # docker-compose
+    ### docker-compose
     sudo curl -L "https://github.com/docker/compose/releases/download/1.23.1/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
     sudo chmod +x /usr/local/bin/docker-compose
 
 
-    # gitkraken
+    ### gitkraken
     wget https://release.gitkraken.com/linux/gitkraken-amd64.deb; sudo dpkg -i gitkraken-amd64.deb
 
-    # stacer monitoring
+    ### stacer monitoring
     sudo add-apt-repository ppa:oguzhaninan/stacer -y
     sudo apt-get update
     sudo apt-get install stacer -y
@@ -191,8 +191,8 @@ fi
 # 4. Simple 'browserstart' app for bookmarks   #
 #################################################
 if [ "$1" = "--step4" ] || [ "$1" = "--all" ]; then
-    # See:
-    # https://gist.github.com/funzoneq/737cd5316e525c388d51877fb7f542de#gistcomment-2306584
+    ### Browser start at http://localhost:3000:
+    # see: https://gist.github.com/funzoneq/737cd5316e525c388d51877fb7f542de#gistcomment-2306584
 
     sudo cp ~/code/freshjon/browserstart/etc/systemd/system/simplehttp.service /etc/systemd/system/
     systemctl daemon-reload
@@ -202,9 +202,8 @@ if [ "$1" = "--step4" ] || [ "$1" = "--all" ]; then
     # lsof -i:3000
 
 
+    ### Jupyter Notebook & vim keybindings
     pip install jupyter
-
-    # Jupyter Notebook vim keybindings
     mkdir -p $(jupyter --data-dir)/nbextensions
     cd $(jupyter --data-dir)/nbextensions
     git clone https://github.com/lambdalisue/jupyter-vim-binding vim_binding
