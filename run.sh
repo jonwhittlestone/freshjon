@@ -200,4 +200,14 @@ if [ "$1" = "--step4" ] || [ "$1" = "--all" ]; then
 
     # systemctl restart simplehttp.service
     # lsof -i:3000
+
+
+    pip install jupyter
+
+    # Jupyter Notebook vim keybindings
+    mkdir -p $(jupyter --data-dir)/nbextensions
+    cd $(jupyter --data-dir)/nbextensions
+    git clone https://github.com/lambdalisue/jupyter-vim-binding vim_binding
+    jupyter nbextension enable vim_binding/vim_binding
+
 fi
