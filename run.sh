@@ -10,6 +10,17 @@ if [ "$1" = "--step1" ] || [ "$1" = "--all" ]; then
         echo "** Running freshjon provisioner, run.sh all steps **"
         sleep 3
     fi
+    # flatpak app store
+    sudo add-apt-repository ppa:alexlarsson/flatpak
+    sudo apt update
+    sudo apt install flatpak -y
+    sudo apt install gnome-software-plugin-flatpak -y
+    flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+
+    # floiate ebook eader
+    flatpak install flathub com.github.johnfactotum.Foliate -y
+
+    # snaps
     snaps=(
         bitwarden, chromium, plexmediaserver
         wavebox, postman, vlc, redis-desktop-manager
@@ -214,5 +225,8 @@ if [ "$1" = "--step4" ] || [ "$1" = "--all" ]; then
     echo "deb [arch=amd64] http://download.virtualbox.org/virtualbox/debian bionic contrib" | sudo tee /etc/apt/sources.list.d/virtualbox.list
     sudo apt update
     sudo apt-get -y install virtualbox-6.0
+
+    ### speedtest-cli
+    pip install speedtest-cli
 
 fi
