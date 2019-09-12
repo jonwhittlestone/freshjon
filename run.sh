@@ -199,7 +199,9 @@ if [ "$1" = "--step3" ] || [ "$1" = "--all" ]; then
 
 fi
 #################################################
-# 4. Simple 'browserstart' app for bookmarks   #
+# 4. Quality of life software
+#   eg. Simple 'browserstart' app for bookmarks   
+#       wallpaper etc
 #################################################
 if [ "$1" = "--step4" ] || [ "$1" = "--all" ]; then
     ### Browser start at http://localhost:3000:
@@ -228,5 +230,13 @@ if [ "$1" = "--step4" ] || [ "$1" = "--all" ]; then
 
     ### speedtest-cli
     pip install speedtest-cli
+
+    # variety wallpapers: https://github.com/varietywalls/variety
+    sudo apt install variety
+
+    # geekbench benchmarking
+    wget http://cdn.geekbench.com/Geekbench-5.0.1-Linux.tar.gz
+    echo 'Todo. Uncompress and run Geekbench'
+    
 
 fi
