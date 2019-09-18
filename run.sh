@@ -237,6 +237,11 @@ if [ "$1" = "--step4" ] || [ "$1" = "--all" ]; then
     # geekbench benchmarking
     wget http://cdn.geekbench.com/Geekbench-5.0.1-Linux.tar.gz
     echo 'Todo. Uncompress and run Geekbench'
+
+    # bat - A cat(1) clone with wings
+    wget https://github.com/sharkdp/bat/releases/download/v0.12.1/bat-musl_0.12.1_amd64.deb
+    sudo dpkg -i bat-musl_0.12.1_amd64.deb 
+
     
 
 fi
