@@ -163,6 +163,18 @@ if [ "$1" = "--step3" ] || [ "$1" = "--all" ]; then
     asdf install python 3.7.3
     asdf global python 3.7.3
 
+    # pyenv
+
+    sudo apt-get install -y make build-essential libssl-dev zlib1g-dev \
+    libbz2-dev libreadline-dev libsqlite3-dev wget curl llvm libncurses5-dev \
+    libncursesw5-dev xz-utils tk-dev libffi-dev liblzma-dev python-openssl
+
+    curl https://pyenv.run | bash
+    echo 'PATH="/home/jon/.pyenv/bin:$PATH"' >> ~/.zshrc
+    eval "$(pyenv init -)"
+    eval "$(pyenv virtualenv-init -)"
+    pyenv install --list | grep " 3\.[678]"
+
 
     ### golang
     asdf plugin-add golang
@@ -213,7 +225,6 @@ if [ "$1" = "--step4" ] || [ "$1" = "--all" ]; then
 
     # systemctl restart simplehttp.service
     # lsof -i:3000
-
 
     ### Jupyter Notebook & vim keybindings
     pip install jupyter
