@@ -199,9 +199,6 @@ if [ "$1" = "--step3" ] || [ "$1" = "--all" ]; then
     sudo chmod +x /usr/local/bin/docker-compose
 
 
-    ### gitkraken
-    wget https://release.gitkraken.com/linux/gitkraken-amd64.deb; sudo dpkg -i gitkraken-amd64.deb
-
     ### stacer monitoring
     sudo add-apt-repository ppa:oguzhaninan/stacer -y
     sudo apt-get update
@@ -244,6 +241,9 @@ if [ "$1" = "--step4" ] || [ "$1" = "--all" ]; then
 
     # variety wallpapers: https://github.com/varietywalls/variety
     sudo apt install variety
+
+    # tree: directory listing
+    sudo apt install tree
 
     # geekbench benchmarking
     wget http://cdn.geekbench.com/Geekbench-5.0.1-Linux.tar.gz
