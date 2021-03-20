@@ -6,7 +6,7 @@ If you haven't already, get git and clone down this repo.
 
         sudo apt update         ;
         sudo apt install git -y ;
-        mkdir ~/code/freshjon   ;
+        mkdir -p ~/code/freshjon   ;
         git clone https://github.com/jonwhittlestone/freshjon.git ~/code/freshjon;
         cd ~/code/freshjon
         #
